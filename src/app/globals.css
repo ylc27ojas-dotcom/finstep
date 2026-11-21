@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-ink: #0b1220;
+  --color-ink-soft: #1f2937;
+  --color-paper: #fbfbf8;
+  --color-card: #ffffff;
+  --color-line: #e5e3da;
+  --color-line-strong: #d3d0c4;
+  --color-muted: #5b6474;
+  --color-accent: #0e7c66;
+  --color-accent-ink: #075e4d;
+  --color-accent-soft: #e7f3ef;
+  --color-tip: #9a4a07;
+  --color-tip-soft: #fdf4e3;
+  --color-danger: #b42318;
+  --color-danger-soft: #fdeeec;
+  --color-key: #2c2f35;
+  --color-key-2nd: #d4a12a;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Subtle graph-paper texture used behind hero sections. */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, rgb(11 18 32 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(11 18 32 / 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* KaTeX: let long formulas scroll instead of breaking the layout. */
+.tex-block {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.tex-block .katex {
+  font-size: 1.08em;
+}
+.katex-display {
+  margin: 0.5rem 0;
+}
+
+/* Long-form article styles (blog + calculator explainers). */
+.prose-fin {
+  color: var(--color-ink-soft);
+  line-height: 1.75;
+  font-size: 1.0625rem;
+}
+.prose-fin > * + * {
+  margin-top: 1.1em;
+}
+.prose-fin h2 {
+  color: var(--color-ink);
+  font-size: 1.45rem;
+  font-weight: 650;
+  line-height: 1.3;
+  margin-top: 2.2em;
+  letter-spacing: -0.01em;
+}
+.prose-fin h3 {
+  color: var(--color-ink);
+  font-size: 1.15rem;
+  font-weight: 650;
+  margin-top: 1.8em;
+}
+.prose-fin a {
+  color: var(--color-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-fin a:hover {
+  color: var(--color-accent);
+}
+.prose-fin ul,
+.prose-fin ol {
+  padding-left: 1.3em;
+}
+.prose-fin ul {
+  list-style: disc;
+}
+.prose-fin ol {
+  list-style: decimal;
+}
+.prose-fin li + li {
+  margin-top: 0.35em;
+}
+.prose-fin strong {
+  color: var(--color-ink);
+  font-weight: 650;
+}
+.prose-fin blockquote {
+  border-left: 3px solid var(--color-key-2nd);
+  background: var(--color-tip-soft);
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--color-ink);
+}
+.prose-fin blockquote > * + * {
+  margin-top: 0.5em;
+}
+.prose-fin code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: #f1efe8;
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.35rem;
+}
+.prose-fin table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  overflow-x: auto;
+}
+.prose-fin th,
+.prose-fin td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  white-space: nowrap;
+}
+.prose-fin th {
+  font-weight: 600;
+  color: var(--color-ink);
+  background: #f4f2ec;
+}
+.prose-fin hr {
+  border-color: var(--color-line);
+}
+
+/* Focus ring that works on every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+  .print-full {
+    grid-column: 1 / -1 !important;
+  }
 }
