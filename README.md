@@ -1,5 +1,7 @@
 # FinStep — finance calculators that show their working
 
+**Live app:** https://finstep-khaki.vercel.app · **Health check:** [/api/health](https://finstep-khaki.vercel.app/api/health)
+
 **FinStep** is a free web app for FRM Part I and CFA Level I candidates. Each calculator returns the answer **and** the full worked solution: the reasoning in plain English, the formula, the numbers plugged in, and the exact **Texas Instruments BA II Plus keystrokes** to reproduce it in the exam room.
 
 > Built for the Masters' Union *Ship It* course, using AI (Claude) throughout the development process.
